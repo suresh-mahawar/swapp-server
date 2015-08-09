@@ -24,9 +24,21 @@
 
     app.set('port', process.env.PORT || 8080);
 
+    var mongoose = require('mongoose');
+
+    mongoose.connect('mongodb://localhost/sistemauto');
+    var db = mongoose.connection;
+
     var server = app.listen(app.get('port'), function () {
         console.log('Express server listening on port ' + server.address().port);
     });
 
+    db.on('error', function callback () {
+        console.log("Connection error");
+    });
+
+    db.once('open', function callback () {
+        console.log("Mongo working!");
+    });
     module.exports = app;
 }());
