@@ -5,28 +5,54 @@
     var mongoose = require('mongoose');
     var User = mongoose.model('User');
 
-    var controller = {};
-
-    controller.get = function() {
-
+    /**
+     * Consulta o conjunto de user
+     * existentes no sistema.
+     *
+     * @returns {*|Query}
+     */
+    exports.get = function() {
+        return User.find(oneForAll);
     };
 
-    controller.getByID = function(id) {
+    /**
+     * Consulta um user especifico do
+     * sistema.
+     *
+     * @param id identificador do user
+     * @returns {Query}
+     */
+    exports.getById = function(id) {
+        return User.findById(id, oneForAll);
     };
 
-    controller.save = function(user) {
+    /**
+     * Cadastra um novo usuario no sistema
+     *
+     * @param {Object} user que sera cadastrado
+     * @returns {*|{method}|Promise}
+     */
+    exports.save = function(user) {
         var user = new User(user);
-        return user.save(function(err, data) {
-            if (err) {
-                return err;
-            }
-            return data;
-        });
+        return user.save(oneForAll);
     };
 
-    controller.update = function(user) {
-
+    /**
+     * Atualiza um novo usuario no sistema
+     *
+     * @param id identificador do user
+     * @param {Object} user que sera atualizado
+     * @returns {Query}
+     */
+    exports.update = function(id, user) {
+        return User.findByIdAndUpdate(id, {$set: user}, {new: true});
     };
 
-    module.exports = controller;
+    // TODO como melhorar isto
+    function oneForAll(err, data) {
+        if (err) {
+            return err;
+        }
+        return data;
+    };
 }());

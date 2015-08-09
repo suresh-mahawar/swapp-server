@@ -13,7 +13,7 @@
         });
     });
 
-    // recurso para /user
+    // recurso para /api/user
     router.use(user);
 
     module.exports = router;

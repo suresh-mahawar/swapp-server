@@ -20,7 +20,7 @@
 
     app.use(express.static(path.join(__dirname, '../client')));
 
-    app.use('/', routes);
+    app.use('/api', routes);
 
     app.set('port', process.env.PORT || 8080);
 
