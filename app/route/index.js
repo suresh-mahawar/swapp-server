@@ -5,6 +5,7 @@
     var router = express.Router();
 
     var user = require('./user.route');
+    var login = require('./login.route');
 
     /* GET home page. */
     router.get('/', function(request, response) {
@@ -15,6 +16,7 @@
 
     // recurso para /api/user
     router.use(user);
+    router.use(login);
 
     module.exports = router;
 }());

@@ -26,7 +26,9 @@
 
     var mongoose = require('mongoose');
 
-    mongoose.connect('mongodb://localhost/sistemauto');
+
+
+    mongoose.connect('mongodb://admin:admin@ds035603.mongolab.com:35603/swapp');
     var db = mongoose.connection;
 
     var server = app.listen(app.get('port'), function () {
@@ -38,7 +40,7 @@
     });
 
     db.once('open', function callback () {
-        console.log("Mongo working!");
+        console.log("Mongo working! At db", db.name);
     });
     module.exports = app;
 }());
