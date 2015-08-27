@@ -3,7 +3,7 @@
 
     require('../model/user.model');
     var mongoose = require('mongoose');
-    var User = mongoose.model('User');
+    var User = mongoose.model('Bug');
 
     /**
      * Consulta o conjunto de user
@@ -48,21 +48,6 @@
                 response.status(404);
                 response.send({mensagem: 'Ja existe usuario com este email'});
             }
-        });
-    };
-
-    /**
-     * Atualiza um novo usuario no sistema
-     *
-     * @param id identificador do user
-     * @param {Object} user que sera atualizado
-     * @returns {Query}
-     */
-    exports.update = function(id, user, response) {
-        User.findByIdAndUpdate(id
-            , {$set: user}
-            , {new: true}).then(function(info) {
-            response.json(info);
         });
     };
 }());

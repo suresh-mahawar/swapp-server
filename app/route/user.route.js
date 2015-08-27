@@ -13,9 +13,7 @@
      * GET /api/user
      */
     router.get(resource, function(request, response) {
-        controller.get().then(function(result) {
-           response.json(result);
-        });
+        controller.get(response);
     });
 
     /**
@@ -25,10 +23,7 @@
      */
     router.get(resource + '/:_id', function(request, response) {
         var id = request.params._id;
-
-        controller.getById(id).then(function(result) {
-            response.json(result);
-        });
+        controller.getById(id, response);
     });
 
     /**
@@ -38,10 +33,7 @@
      */
     router.post(resource, function(request, response) {
         var data = request.body;
-
-        controller.save(data).then(function(result) {
-            response.json(result);
-        });
+        controller.save(data, response);
     });
 
     /**
@@ -52,10 +44,7 @@
     router.put(resource + '/:_id', function(request, response) {
         var id = request.params._id;
         var data = request.body;
-
-        controller.update(id, data).then(function(result) {
-            response.json(result);
-        });
+        controller.update(id, data, response);
     });
 
     module.exports = router;

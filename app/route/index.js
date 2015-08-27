@@ -6,6 +6,7 @@
 
     var user = require('./user.route');
     var login = require('./login.route');
+    var bug = require('./bug.route');
 
     /* GET home page. */
     router.get('/', function(request, response) {
@@ -14,9 +15,9 @@
         });
     });
 
-    // recurso para /api/user
     router.use(user);
     router.use(login);
+    router.use(bug);
 
     module.exports = router;
 }());

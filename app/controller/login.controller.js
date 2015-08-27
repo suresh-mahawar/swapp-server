@@ -11,13 +11,21 @@
      *
      * @returns {*|Query}
      */
-    exports.login = function(data) {
-        console.log('data', data);
-        var query = {$and: [
-            {'email': data.email}
-            , {'password': data.password}
-        ]};
-        return User.findOne(query, oneForAll);
+    exports.login = function(data, response) {
+        var query = {
+            $and: [{email: data.email}
+                , {password: data.password}
+            ]
+        };
+        User.findOne(query).then(function(info) {
+            if (info == null) {
+                response.status(404);
+                response.json({mensagem: 'Autenticaçao Incorreta'});
+            } else {
+                // TODO token
+                response.json(info);
+            }
+        });
     };
 
     // TODO como melhorar isto

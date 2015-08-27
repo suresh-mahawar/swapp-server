@@ -14,10 +14,7 @@
      */
     router.post(resource, function(request, response) {
         var data = request.body;
-
-        controller.login(data).then(function(result) {
-            response.json(result);
-        });
+        controller.login(data, response);
     });
 
     module.exports = router;
