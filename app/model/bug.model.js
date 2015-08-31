@@ -8,11 +8,11 @@
      * Schema de User do sistema
      */
     var bug = new schema({
-        description: {
+        tipo: {
             type: String
         },
-        user: {
-            type: Number
+        descricao: {
+            type: String
         }
     });
 
