@@ -27,8 +27,8 @@
     var mongoose = require('mongoose');
 
 
-   // mongoose.connect('mongodb://localhost/swapp');
-    mongoose.connect('mongodb://admin:admin@ds035603.mongolab.com:35603/swapp');
+    mongoose.connect('mongodb://localhost/swapp');
+    //mongoose.connect('mongodb://admin:admin@ds035603.mongolab.com:35603/swapp');
     var db = mongoose.connection;
 
     var server = app.listen(app.get('port'), function () {
