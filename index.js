@@ -8,7 +8,9 @@
     var bodyParser = require('body-parser');
 
     var app = express();
+
     var config = require('./config/env.conf.json')[process.env.NODE_ENV || 'development'];
+    var routes = require('./config/route.config');
     var db = require('./config/db.config');
 
     app.use(logger('dev'));
@@ -17,15 +19,10 @@
         extended: true
     }));
     app.use(cookieParser());
-
     app.use(express.static(path.join(__dirname, '../client')));
 
-    var routes = require('./app/route/index');
     app.use('/api', routes);
-
-
     app.set('port', config.PORT);
-
     db.init(config);
 
     var server = app.listen(app.get('port'), function () {
