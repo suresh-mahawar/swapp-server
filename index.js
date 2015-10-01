@@ -23,7 +23,7 @@
 
     app.use('/api', routes);
     app.set('port', config.PORT);
-    db.init(config);
+    db.init(config.MONGO_URI);
 
     var server = app.listen(app.get('port'), function () {
         console.log('Express server listening on port ' + server.address().port);

@@ -1,10 +1,10 @@
 (function() {
     'use strict';
 
-    module.exports.init = function(config) {
+    module.exports.init = function(MONGO_URI) {
         var mongoose = require('mongoose');
 
-        mongoose.connect(config.MONGO_URI);
+        mongoose.connect(MONGO_URI);
         var db = mongoose.connection;
 
         db.on('error', function callback () {
