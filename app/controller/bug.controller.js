@@ -1,9 +1,7 @@
 (function() {
     'use strict';
 
-    require('../model/bug.model');
-    var mongoose = require('mongoose');
-    var Bug = mongoose.model('Bug');
+    var Bug = require('../model/bug.model');
 
     exports.getAll = function(request, response) {
         var query = Bug.find();

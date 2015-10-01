@@ -7,9 +7,9 @@
     var cookieParser = require('cookie-parser');
     var bodyParser = require('body-parser');
 
-    var routes = require('./app/route/index');
-
     var app = express();
+    var config = require('./config/env.conf.json')[process.env.NODE_ENV || 'development'];
+    var db = require('./config/db.config');
 
     app.use(logger('dev'));
     app.use(bodyParser.json());
@@ -20,27 +20,17 @@
 
     app.use(express.static(path.join(__dirname, '../client')));
 
+    var routes = require('./app/route/index');
     app.use('/api', routes);
 
-    app.set('port', process.env.PORT || 8080);
 
-    var mongoose = require('mongoose');
+    app.set('port', config.PORT);
 
-
-    mongoose.connect('mongodb://localhost/swapp');
-    //mongoose.connect('mongodb://admin:admin@ds035603.mongolab.com:35603/swapp');
-    var db = mongoose.connection;
+    db.init(config);
 
     var server = app.listen(app.get('port'), function () {
         console.log('Express server listening on port ' + server.address().port);
     });
 
-    db.on('error', function callback () {
-        console.log("Connection error");
-    });
-
-    db.once('open', function callback () {
-        console.log("Mongo working! At db", db.name);
-    });
     module.exports = app;
 }());

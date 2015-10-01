@@ -1,9 +1,6 @@
 (function() {
     'use strict';
-
-    require('../model/user.model');
-    var mongoose = require('mongoose');
-    var User = mongoose.model('User');
+    var User = require('../model/user.model');
 
     exports.getAll = function(request, response) {
         var query = User.find();

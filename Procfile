@@ -1,1 +1,1 @@
-web: npm install | node index.js
+web: npm install | NODE_ENV=production node index.js

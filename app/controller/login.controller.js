@@ -1,9 +1,7 @@
 (function() {
     'use strict';
 
-    require('../model/user.model');
-    var mongoose = require('mongoose');
-    var User = mongoose.model('User');
+    var User = require('../model/user.model');
 
     exports.login = function(request, response) {
       response.json({'mensagem': 123});
