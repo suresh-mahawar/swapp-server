@@ -12,40 +12,28 @@
      *
      * GET /api/user
      */
-    router.get(resource, function(request, response) {
-        controller.get(response);
-    });
+    router.get(resource, controller.getAll);
 
     /**
      * Realiza o GET de Resource do Endpoint user.
      *
      * GET /api/user/:id
      */
-    router.get(resource + '/:_id', function(request, response) {
-        var id = request.params._id;
-        controller.getById(id, response);
-    });
+    router.get(resource + '/:_id', controller.getById);
 
     /**
      * Realiza o POST de Resource do Endpoint user.
      *
      * POST /api/user
      */
-    router.post(resource, function(request, response) {
-        var data = request.body;
-        controller.save(data, response);
-    });
+    router.post(resource, controller.save);
 
     /**
      * Realiza o PUT de Resource do Endpoint user.
      *
      * PUT /api/user/:id
      */
-    router.put(resource + '/:_id', function(request, response) {
-        var id = request.params._id;
-        var data = request.body;
-        controller.update(id, data, response);
-    });
+    router.put(resource + '/:_id', controller.update);
 
     module.exports = router;
 }());

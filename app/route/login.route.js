@@ -12,10 +12,7 @@
      *
      * POST /api/login
      */
-    router.post(resource, function(request, response) {
-        var data = request.body;
-        controller.login(data, response);
-    });
+    router.post(resource, controller.login);
 
     module.exports = router;
 }());

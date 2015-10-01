@@ -7,19 +7,11 @@
 
     var resource = '/bug';
 
-    router.get(resource, function(request, response) {
-        controller.get(response);
-    });
+    router.get(resource, controller.getAll);
 
-    router.get(resource + '/:_id', function(request, response) {
-        var id = request.params._id;
-        controller.getById(id, response);
-    });
+    router.get(resource + '/:_id', controller.getById);
 
-    router.post(resource, function(request, response) {
-        var data = request.body;
-        controller.save(data, response);
-    });
+    router.post(resource, controller.save);
 
     module.exports = router;
 }());
