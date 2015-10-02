@@ -4,15 +4,20 @@
     var mongoose = require('mongoose');
     var schema = mongoose.Schema;
 
-    /**
-     * Schema de User do sistema
-     */
+    function nameValidator(name) {
+        return name === '' || name === undefined;
+    };
+
     var user = new schema({
         name: {
-            type: String
+            type: String,
+            required: true,
+            validate: [nameValidator, 'Este nome eh invalido']
         },
         email: {
-            type: String
+            type: String,
+            required: true,
+            unique: true
         },
         password: {
             type: String
