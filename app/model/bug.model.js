@@ -9,10 +9,12 @@
      */
     var bug = new schema({
         tipo: {
-            type: String
+            type: String,
+            required: true
         },
         descricao: {
-            type: String
+            type: String,
+            required: true
         }
     });
 
