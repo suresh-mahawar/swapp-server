@@ -9,7 +9,7 @@
 
     var app = express();
 
-    var config = require('./config/env.conf.json')[process.env.NODE_ENV || 'development'];
+    var config = require('./config/env.config.json')[process.env.NODE_ENV || 'development'];
     var routes = require('./config/route.config');
     var db = require('./config/db.config');
 
@@ -29,5 +29,5 @@
         console.log('Express server listening on port ' + server.address().port);
     });
 
-    module.exports = app;
+    module.exports.app = app;
 }());

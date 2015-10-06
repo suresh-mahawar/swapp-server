@@ -1,5 +1,4 @@
 var assert = require('assert');
-var User = require('../app/model/user.model');
 
 describe('Array', function() {
   describe('#indexOf2()', function () {
@@ -10,26 +9,19 @@ describe('Array', function() {
   });
 });
 
-describe('User Model Unit Tests: ', function() {
-	
-	var user;
+var util = require('./util.js');
+var request = require('supertest');
+var should = require('should');
+var app = require('../index').app;
 
-	beforeEach(function(done) {
-		user = new User({email: 'test@gmail.com'});
-
-        user.save(function() {
-           done();
-        });
-	});
-
-	describe('Method save', function() {
-		it('should be able to save without problems', function(done) {
-			user = new User({email: 'test@gmail.com'});
-			return user.save(function(err) {
-				should.not.exit(err);
-				done();
-			});
-		});
-	});
-
+describe('Endpoint /api/user test. ', function() {
+  it('/api/', function(done) {
+    request(app)
+      .get('/api/user/1')
+      .expect(200)
+      .end(function(err, info) {
+        should.not.exist(err);
+        done();
+      });
+  });
 });
