@@ -29,5 +29,5 @@
         console.log('Express server listening on port ' + server.address().port);
     });
 
-    module.exports.app = app;
+    module.exports = app;
 }());

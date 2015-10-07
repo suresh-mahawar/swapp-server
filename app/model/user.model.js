@@ -8,11 +8,13 @@
         return name === '' || name === undefined;
     };
 
+    // TODO fazer hash na senha
+
     var user = new schema({
         name: {
             type: String,
-            required: true,
-            validate: [nameValidator, 'Este nome eh invalido']
+            required: true
+            //validate: [nameValidator, 'Este nome eh invalido']
         },
         email: {
             type: String,
