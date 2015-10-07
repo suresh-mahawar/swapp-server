@@ -27,4 +27,8 @@
             }
         });
     };
+
+    exports.logout = function(request, response) {
+        response.json({message: 'Token invalid ;)'});
+    };
 }());

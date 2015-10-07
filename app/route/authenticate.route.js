@@ -12,7 +12,9 @@
      *
      * POST /api/login
      */
-    router.post(resource, controller.authenticate);
+    router.post(resource + '/login', controller.authenticate);
+
+    router.post(resource + '/logout', controller.logout);
 
     module.exports = router;
 }());

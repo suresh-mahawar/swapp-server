@@ -8,10 +8,12 @@
 
     router.use(function(request, response, next) {
         var token = request.body.token || request.query.token || request.headers['x-access-token'];
-        var hasToken = token !== null && token !== undefined;
-        var isAuthentication = request.originalUrl === "/api/authenticate";
 
-        if (isAuthentication) {
+        var hasToken = token !== null && token !== undefined;
+        var isAuthentication = request.originalUrl === "/api/authenticate/login";
+        var isCreatingUser = request.url === "/user" && request.method === "POST";
+
+        if (isAuthentication || isCreatingUser) {
             next();
         } else if (hasToken) {
             jwt.verify(token, config.secret, function(err, decoded) {
@@ -33,7 +35,6 @@
 
     /* GET home page. */
     router.get('/', function(request, response) {
-        console.log('get /');
         response.json({
             mensagem: 'Server up and running'
         });
