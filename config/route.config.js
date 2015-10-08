@@ -32,6 +32,7 @@
     router.use(require('../app/route/user.route'));
     router.use(require('../app/route/authenticate.route'));
     router.use(require('../app/route/bug.route'));
+    router.use(require('../app/route/swap.route'));
 
     /* GET home page. */
     router.get('/', function(request, response) {

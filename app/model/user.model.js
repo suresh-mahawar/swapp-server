@@ -8,7 +8,7 @@
         return name === '' || name === undefined;
     };
 
-    // TODO fazer hash na senha
+    // TODO fazer hash na senha http://blog.matoski.com/articles/jwt-express-node-mongoose/
 
     var user = new schema({
         name: {

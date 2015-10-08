@@ -13,11 +13,11 @@
         });
 
         query.exec(function(error, data) {
-            if (!data) {
-                response.json({message: 'Authentication failed'});
+            if (data === null) {
+                response.status(403).json({message: 'Authentication failed'});
             } else {
                 if (data.password !== password) {
-                    response.json({message: 'Wrong password'});
+                    response.status(403).json({message: 'Wrong password'});
                 } else {
                     var token = jwt.sign(data, config.secret, {
                         expiresIn: 1440 // 24 hours
@@ -29,6 +29,8 @@
     };
 
     exports.logout = function(request, response) {
-        response.json({message: 'Token invalid ;)'});
+        // TODO avaliar como fazer isto corretamente
+        // a lib nao tem como invalidar o token
+        response.json({message: 'Logout done'});
     };
 }());
