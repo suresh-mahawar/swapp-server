@@ -14,5 +14,7 @@
      */
     router.post(resource, controller.save);
 
+    router.get(resource, controller.getAll);
+
     module.exports = router;
 }());

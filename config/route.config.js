@@ -20,7 +20,9 @@
                 if (err) {
                     return response.status(403).json({message: 'Failed to authenticate token.'});
                 } else {
-                    request.decoded = decoded;
+                    request.body.user = decoded._id;
+                    request.body.userName = decoded.name;
+                    request.body.userEmail = decoded.email;
                     next();
                 }
             });

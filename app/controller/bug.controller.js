@@ -20,8 +20,7 @@
 
     exports.save = function(request, response) {
         var bug = new Bug(request.body);
-        var query = bug.save();
-        query.exec(function(error, data) {
+        bug.save(function(error, data) {
             response.json(data);
         });
     };
