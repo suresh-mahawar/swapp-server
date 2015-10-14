@@ -22,7 +22,7 @@
     app.use(express.static(path.join(__dirname, '../client')));
 
     app.use('/api', routes);
-    app.set('port', config.PORT);
+    app.set('port', process.env.PORT || config.PORT);
     db.init(config.MONGO_URI);
 
     var server = app.listen(app.get('port'), function () {
