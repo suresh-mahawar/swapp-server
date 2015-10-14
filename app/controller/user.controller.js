@@ -20,6 +20,9 @@
     exports.save = function(request, response) {
         var user = new User(request.body);
         user.save(function(error, data) {
+            if (error !== null) {
+                response.status(400).json({message: 'Cadastro invalido'});
+            }
             response.json(data);
         });
     };
@@ -28,7 +31,7 @@
         var id = request.params._id;
         var query =  User.findByIdAndUpdate(id, {$set: request.body}, {new: true});
         query.exec(function(error, data) {
-          response.json(data);
+            response.json(data);
         });
     };
 }());
