@@ -1,27 +1,17 @@
 (function() {
     'use strict';
 
-    var Bug = require('../model/bug.model');
+    var express = require('express');
+    var router = express.Router();
+    var controller = require('../service/bug.service');
 
-    exports.getAll = function(request, response) {
-        var query = Bug.find();
-        query.exec(function(error, data) {
-            response.json(data);
-        });
-    };
+    var resource = '/bug';
 
-    exports.getById = function(request, response) {
-        var id = request.params._id;
-        var query = Bug.findById(id);
-        query.exec(function(error, data) {
-            response.json(data);
-        });
-    };
+    router.get(resource, controller.getAll);
 
-    exports.save = function(request, response) {
-        var bug = new Bug(request.body);
-        bug.save(function(error, data) {
-            response.json(data);
-        });
-    };
+    router.get(resource + '/:_id', controller.getById);
+
+    router.post(resource, controller.save);
+
+    module.exports = router;
 }());

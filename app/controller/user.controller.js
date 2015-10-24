@@ -1,37 +1,39 @@
 (function() {
     'use strict';
-    var User = require('../model/user.model');
 
-    exports.getAll = function(request, response) {
-        var query = User.find();
-        query.exec(function(error, data) {
-            response.json(data);
-        });
-    };
+    var express = require('express');
+    var router = express.Router();
+    var controller = require('../service/user.service');
 
-    exports.getById = function(request, response) {
-        var id = request.params._id;
-        var query = User.findById(id);
-        query.exec(function(error, data) {
-            response.json(data);
-        });
-    };
+    var resource = '/user';
 
-    exports.save = function(request, response) {
-        var user = new User(request.body);
-        user.save(function(error, data) {
-            if (error !== null) {
-                response.status(400).json({message: 'Cadastro invalido'});
-            }
-            response.json(data);
-        });
-    };
+    /**
+     * Realiza o GET de Collection do Endpoint user.
+     *
+     * GET /api/user
+     */
+    router.get(resource, controller.getAll);
 
-    exports.update = function(request, response) {
-        var id = request.params._id;
-        var query =  User.findByIdAndUpdate(id, {$set: request.body}, {new: true});
-        query.exec(function(error, data) {
-            response.json(data);
-        });
-    };
+    /**
+     * Realiza o GET de Resource do Endpoint user.
+     *
+     * GET /api/user/:id
+     */
+    router.get(resource + '/:_id', controller.getById);
+
+    /**
+     * Realiza o POST de Resource do Endpoint user.
+     *
+     * POST /api/user
+     */
+    router.post(resource, controller.save);
+
+    /**
+     * Realiza o PUT de Resource do Endpoint user.
+     *
+     * PUT /api/user/:id
+     */
+    router.put(resource + '/:_id', controller.update);
+
+    module.exports = router;
 }());

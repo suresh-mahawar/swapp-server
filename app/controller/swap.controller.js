@@ -1,19 +1,20 @@
 (function() {
     'use strict';
-    var Swap = require('../model/swap.model');
 
-    exports.save = function(request, response) {
-        var swap = new Swap(request.body);
-        swap.save(function(error, data) {
-            response.json(data);
-        });
-    };
+    var express = require('express');
+    var router = express.Router();
+    var controller = require('../service/swap.service');
 
-    exports.getAll = function(request, response) {
-        var query = Swap.find();
-        query.exec(function(error, data) {
-            response.json(data);
-        });
-    };
+    var resource = '/swap';
 
+    /**
+     * Realiza o POST de Resource do Endpoint user.
+     *
+     * POST /api/user
+     */
+    router.post(resource, controller.save);
+
+    router.get(resource, controller.getAll);
+
+    module.exports = router;
 }());

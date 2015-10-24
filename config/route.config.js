@@ -31,10 +31,10 @@
         }
     });
 
-    router.use(require('../app/route/user.route'));
-    router.use(require('../app/route/authenticate.route'));
-    router.use(require('../app/route/bug.route'));
-    router.use(require('../app/route/swap.route'));
+    router.use(require('../app/controller/user.controller'));
+    router.use(require('../app/controller/authenticate.controller'));
+    router.use(require('../app/controller/bug.controller'));
+    router.use(require('../app/controller/swap.controller'));
 
     /* GET home page. */
     router.get('/', function(request, response) {
